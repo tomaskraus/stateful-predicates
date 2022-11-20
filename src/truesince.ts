@@ -9,7 +9,7 @@ import type {PredicateType} from 'not-predicate';
  */
 export function trueSince<T>(predicate: PredicateType<T>): PredicateType<T> {
   let success: boolean;
-  return function (this: void, value: T, index: number): boolean {
+  return function (this: any, value: T, index: number): boolean {
     if (predicate.call(this, value, index)) {
       success = true;
     }
