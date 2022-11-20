@@ -9,6 +9,9 @@ this is a footer section
 some text...`;
 
 const lines = txt.split('\n');
-const footerLines = lines.filter(trueSince(s => /\[footer]/i.test(s)));
+// prettier-ignore
+const footerLines = lines.filter(
+    trueSince(s => /\[footer]/i.test(s))
+  );
 
 console.log(footerLines);

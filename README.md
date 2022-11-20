@@ -13,5 +13,8 @@ Bring new power to standard predicates, when using Array.filter or other predica
 ```ts
 import {trueSince} from 'stateful-predicates';
 
-const footerLines = lines.filter(trueSince(s => /\[footer]/i.test(s)));
+// prettier-ignore
+const footerLines = lines.filter(
+    trueSince(s => /\[footer]/i.test(s))
+  );
 ```
