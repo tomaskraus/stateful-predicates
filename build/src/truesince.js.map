@@ -1,0 +1,1 @@
+{"version":3,"file":"truesince.js","sourceRoot":"","sources":["../../src/truesince.ts"],"names":[],"mappings":";;;AAEA;;;;;;GAMG;AACH,SAAgB,SAAS,CAAI,SAA2B;IACtD,IAAI,OAAgB,CAAC;IACrB,OAAO,UAAU,KAAQ,EAAE,KAAa;QACtC,IAAI,SAAS,CAAC,KAAK,EAAE,KAAK,CAAC,EAAE;YAC3B,OAAO,GAAG,IAAI,CAAC;SAChB;QACD,OAAO,OAAO,CAAC;IACjB,CAAC,CAAC;AACJ,CAAC;AARD,8BAQC"}
