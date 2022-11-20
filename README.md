@@ -4,6 +4,8 @@
 
 Bunch of stateful predicate wrappers. Such as trueSince, trueOnChange, trueOneAfter... Typed.
 
+## Why to use
+
 Bring new power to standard predicates, when using Array.filter or other predicate-demanding methods.
 
 Example: We want all lines after a line with "[footer]" tag.
