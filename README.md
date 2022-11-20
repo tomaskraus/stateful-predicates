@@ -8,7 +8,7 @@ Bunch of stateful predicate wrappers. Such as trueSince, trueOnChange, trueOneAf
 
 Bring new power to standard predicates, when using Array.filter or other predicate-demanding methods.
 
-Example: We want all lines after a line with "[footer]" tag.
+**Example**: We want only lines after (and with) a line that contains a "[footer]" tag.
 
 ```ts
 import {trueSince} from 'stateful-predicates';
