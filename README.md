@@ -2,7 +2,12 @@
 
 # stateful-predicates
 
-Bunch of stateful predicate wrappers. Such as trueSince, trueOnChange, trueOneAfter... Typed.
+Bunch of (typed) stateful predicate wrappers:
+
+- trueSince
+- trueOneAfter
+- trueOnChange
+- switchOnOff
 
 ## Why to use
 
@@ -17,4 +22,24 @@ import {trueSince} from 'stateful-predicates';
 const footerLines = lines.filter(
     trueSince(s => /\[footer]/i.test(s))
   );
+```
+
+## Installation
+
+```bash
+$ npm install stateful-predicates
+```
+
+## Usage
+
+Typescript / ES module:
+
+```ts
+import * as SP from 'stateful-predicates';
+```
+
+Javascript / CommonJS:
+
+```js
+const SP = require('stateful-predicates');
 ```
