@@ -9,6 +9,7 @@ this is a footer section
 
 some text...`;
 const lines = txt.split('\n');
+// prettier-ignore
 const footerLines = lines.filter((0, truesince_1.trueSince)(s => /\[footer]/i.test(s)));
 console.log(footerLines);
 //# sourceMappingURL=examples.js.map
