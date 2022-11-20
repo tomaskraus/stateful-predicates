@@ -11,7 +11,7 @@ exports.trueSince = void 0;
 function trueSince(predicate) {
     let success;
     return function (value, index) {
-        if (predicate(value, index)) {
+        if (predicate.call(this, value, index)) {
             success = true;
         }
         return success;
