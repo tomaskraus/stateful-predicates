@@ -1,4 +1,4 @@
-import type {PredicateType} from 'not-predicate';
+import type {PredicateType} from './util/predicate';
 
 /**
  * Predicate that returns true for one element after its predicate argument succeeded.

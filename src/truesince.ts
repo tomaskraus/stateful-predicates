@@ -1,4 +1,4 @@
-import type {PredicateType} from 'not-predicate';
+import type {PredicateType} from './util/predicate';
 
 /**
  * Predicate that returns true since its predicate arguments succeeded. That is, after that, in every next call, this predicate always returns true.

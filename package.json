@@ -44,8 +44,5 @@
     "rxjs": "^7.5.7",
     "ts-jest": "^28.0.7",
     "typescript": "~4.9.3"
-  },
-  "dependencies": {
-    "not-predicate": "^1.0.4"
   }
 }
