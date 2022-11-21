@@ -7,6 +7,8 @@ exports.trueSince = void 0;
  * @template T The type of input value.
  * @param predicate the predicate argument
  * @returns Predicate that returns true since its predicate arguments succeeded.
+ *
+ * @see {@link PredicateType}
  */
 function trueSince(predicate) {
     let success;

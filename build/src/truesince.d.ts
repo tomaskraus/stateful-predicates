@@ -5,5 +5,7 @@ import type { PredicateType } from './util/predicate';
  * @template T The type of input value.
  * @param predicate the predicate argument
  * @returns Predicate that returns true since its predicate arguments succeeded.
+ *
+ * @see {@link PredicateType}
  */
 export declare function trueSince<T>(predicate: PredicateType<T>): PredicateType<T>;

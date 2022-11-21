@@ -19,6 +19,8 @@ exports.trueOneAfter = void 0;
  * @template T The type of input element.
  * @param predicate the predicate argument
  * @returns Predicate that returns true for one element after its predicate argument succeeded.
+ *
+ * @see {@link PredicateType}
  */
 function trueOneAfter(predicate) {
     let previousResult = false;

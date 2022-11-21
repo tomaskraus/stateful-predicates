@@ -17,5 +17,7 @@ import type { PredicateType } from './util/predicate';
  * @template T The type of input element.
  * @param predicate the predicate argument
  * @returns Predicate that returns true for one element after its predicate argument succeeded.
+ *
+ * @see {@link PredicateType}
  */
 export declare function trueOneAfter<T>(predicate: PredicateType<T>): PredicateType<T>;

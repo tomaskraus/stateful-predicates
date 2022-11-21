@@ -46,6 +46,20 @@ const SP = require('stateful-predicates');
 
 ## API
 
+### PredicateType
+
+Entire `stateful-predicates` library is about predicates:
+
+```ts
+export type PredicateType<T> = (value: T, index: number) => boolean;
+```
+
+Predicate is a function, that accepts some value and returns a boolean value, based on its condition.
+
+It's something you can pass as callback to [Array.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) or [RxJS](https://rxjs.dev/api/operators/takeWhile) operators.
+
+Almost every function of `stateful-predicates` library accepts a `PredicateType` argument and returns another `PredicateType` value.
+
 ### trueOneAfter
 
 ```ts
