@@ -51,7 +51,7 @@ const SP = require('stateful-predicates');
 Entire `stateful-predicates` library is about predicates:
 
 ```ts
-export type PredicateType<T> = (value: T, index: number) => boolean;
+type PredicateType<T> = (value: T, index: number) => boolean;
 ```
 
 Predicate is a function, that accepts some value and returns a boolean value, based on its condition.
