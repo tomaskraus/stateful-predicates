@@ -60,6 +60,25 @@ It's something you can pass as callback to [Array.filter](https://developer.mozi
 
 Almost every function of `stateful-predicates` library accepts a `PredicateType` argument and returns another `PredicateType` value.
 
+### trueSince
+
+```ts
+function trueSince<T>(predicate: PredicateType<T>): PredicateType<T>;
+```
+
+Returns a predicate that returns true since its predicate arguments succeeded.  
+That is, after that, in every next call, this predicate always returns true.
+
+**Example**:
+
+```ts
+const isEqualToThree = x => x === 3;
+
+const res = [2, 4, 3, 5, 0, 3, 3].filter(trueSince(isEqualToThree));
+console.log(res);
+//=> [ 3, 5, 0, 3, 3 ]
+```
+
 ### trueOneAfter
 
 ```ts
