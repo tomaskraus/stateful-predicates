@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const switchtruefalse_1 = require("../src/switchtruefalse");
 const helpers_1 = require("./helpers");
+const truesince_1 = require("../src/truesince");
 test('switchTrueFalse', () => {
     expect([2, 0, 3, -1, 1].map((0, switchtruefalse_1.switchTrueFalse)(helpers_1.isZero, helpers_1.isMinusOne))).toEqual([
         false,
@@ -87,5 +88,13 @@ test('switchTrueFalse - adjacent matches', () => {
 });
 test('switchTrueFalse - greedy behavior', () => {
     expect([3, 0, 0, 2, 0, -1, -1, 2, -1].map((0, switchtruefalse_1.switchTrueFalse)(helpers_1.isZero, helpers_1.isMinusOne))).toEqual([false, true, true, true, true, false, false, false, false]);
+});
+// ---------------------------------------------
+test('switchTrueFalse - trueSince emulation - index', () => {
+    function trueSince2(predicate) {
+        return (0, switchtruefalse_1.switchTrueFalse)(predicate, () => false);
+    }
+    const nums = [2, 4, 3, 5, 0, 3, 3];
+    expect(nums.filter(trueSince2(helpers_1.isIndexEqualThree))).toEqual(nums.filter((0, truesince_1.trueSince)(helpers_1.isIndexEqualThree)));
 });
 //# sourceMappingURL=switchTrueFalse.test.js.map

@@ -7,6 +7,9 @@ import {
   customThis,
 } from './helpers';
 
+import {trueSince} from '../src/truesince';
+import type {PredicateType} from './util/predicate';
+
 test('switchTrueFalse', () => {
   expect([2, 0, 3, -1, 1].map(switchTrueFalse(isZero, isMinusOne))).toEqual([
     false,
@@ -135,4 +138,16 @@ test('switchTrueFalse - greedy behavior', () => {
   expect(
     [3, 0, 0, 2, 0, -1, -1, 2, -1].map(switchTrueFalse(isZero, isMinusOne))
   ).toEqual([false, true, true, true, true, false, false, false, false]);
+});
+
+// ---------------------------------------------
+
+test('switchTrueFalse - trueSince emulation - index', () => {
+  function trueSince2<T>(predicate: PredicateType<T>) {
+    return switchTrueFalse(predicate, () => false);
+  }
+  const nums = [2, 4, 3, 5, 0, 3, 3];
+  expect(nums.filter(trueSince2(isIndexEqualThree))).toEqual(
+    nums.filter(trueSince(isIndexEqualThree))
+  );
 });
