@@ -89,6 +89,16 @@ test('switchTrueFalse - adjacent matches', () => {
 test('switchTrueFalse - greedy behavior', () => {
     expect([3, 0, 0, 2, 0, -1, -1, 2, -1].map((0, switchtruefalse_1.switchTrueFalse)(helpers_1.isZero, helpers_1.isMinusOne))).toEqual([false, true, true, true, true, false, false, false, false]);
 });
+test('switchTrueFalse - alternates output if both predicates are the same', () => {
+    expect([0, 0, 0, 2, 0, 0].map((0, switchtruefalse_1.switchTrueFalse)(helpers_1.isZero, helpers_1.isZero))).toEqual([
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+    ]);
+});
 // ---------------------------------------------
 test('switchTrueFalse - trueSince emulation - index', () => {
     function trueSince2(predicate) {

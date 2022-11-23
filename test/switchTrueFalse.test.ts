@@ -140,6 +140,17 @@ test('switchTrueFalse - greedy behavior', () => {
   ).toEqual([false, true, true, true, true, false, false, false, false]);
 });
 
+test('switchTrueFalse - alternates output if both predicates are the same', () => {
+  expect([0, 0, 0, 2, 0, 0].map(switchTrueFalse(isZero, isZero))).toEqual([
+    true,
+    false,
+    true,
+    true,
+    false,
+    true,
+  ]);
+});
+
 // ---------------------------------------------
 
 test('switchTrueFalse - trueSince emulation - index', () => {
