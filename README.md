@@ -46,12 +46,12 @@ const SP = require('stateful-predicates');
 
 ## API
 
-### PredicateType
+### TPredicate
 
 Entire `stateful-predicates` library is about predicates:
 
 ```ts
-type PredicateType<T> = (value: T, index: number) => boolean;
+type TPredicate<T> = (value: T, index: number) => boolean;
 ```
 
 Predicate is a function, that accepts some value and returns a boolean value, based on its condition.
@@ -63,7 +63,7 @@ Almost every function of `stateful-predicates` library accepts a `PredicateType`
 ### trueSince
 
 ```ts
-function trueSince<T>(predicate: PredicateType<T>): PredicateType<T>;
+function trueSince<T>(predicate: TPredicate<T>): TPredicate<T>;
 ```
 
 Returns a predicate that returns true since its predicate arguments succeeded.  
@@ -82,7 +82,7 @@ console.log(res);
 ### trueOneAfter
 
 ```ts
-function trueOneAfter<T>(predicate: PredicateType<T>): PredicateType<T>;
+function trueOneAfter<T>(predicate: TPredicate<T>): TPredicate<T>;
 ```
 
 Predicate that returns true for one element after its predicate argument succeeded.
@@ -116,9 +116,9 @@ console.log(result);
 
 ```ts
 function switchTrueFalse<T>(
-  predicateForTrue: PredicateType<T>,
-  predicateForFalse: PredicateType<T>
-): PredicateType<T>;
+  predicateForTrue: TPredicate<T>,
+  predicateForFalse: TPredicate<T>
+): TPredicate<T>;
 ```
 
 Predicate that stays true "on and after" `predicateForTrue` is successful.  

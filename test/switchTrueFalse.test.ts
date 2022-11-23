@@ -8,7 +8,7 @@ import {
 } from './helpers';
 
 import {trueSince} from '../src/truesince';
-import type {PredicateType} from './util/predicate';
+import type {TPredicate} from './util/predicate';
 
 test('switchTrueFalse', () => {
   expect([2, 0, 3, -1, 1].map(switchTrueFalse(isZero, isMinusOne))).toEqual([
@@ -154,7 +154,7 @@ test('switchTrueFalse - alternates output if both predicates are the same', () =
 // ---------------------------------------------
 
 test('switchTrueFalse - trueSince emulation - index', () => {
-  function trueSince2<T>(predicate: PredicateType<T>) {
+  function trueSince2<T>(predicate: TPredicate<T>) {
     return switchTrueFalse(predicate, () => false);
   }
   const nums = [2, 4, 3, 5, 0, 3, 3];

@@ -7,4 +7,4 @@
  *
  * @returns True, if value (and index) meet the predicate's condition.
  */
-export type PredicateType<T> = (value: T, index: number) => boolean;
+export type TPredicate<T> = (value: T, index: number) => boolean;

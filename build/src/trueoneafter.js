@@ -20,7 +20,7 @@ exports.trueOneAfter = void 0;
  * @param predicate the predicate argument
  * @returns Predicate that returns true for one element after its predicate argument succeeded.
  *
- * @see {@link PredicateType}
+ * @see {@link TPredicate}
  */
 function trueOneAfter(predicate) {
     let previousResult = false;

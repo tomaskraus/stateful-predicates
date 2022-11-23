@@ -1,4 +1,4 @@
-import type { PredicateType } from './util/predicate';
+import type { TPredicate } from './util/predicate';
 /**
  * Predicate that returns true since its predicate arguments succeeded. That is, after that, in every next call, this predicate always returns true.
  *
@@ -6,6 +6,6 @@ import type { PredicateType } from './util/predicate';
  * @param predicate the predicate argument
  * @returns Predicate that returns true since its predicate arguments succeeded.
  *
- * @see {@link PredicateType}
+ * @see {@link TPredicate}
  */
-export declare function trueSince<T>(predicate: PredicateType<T>): PredicateType<T>;
+export declare function trueSince<T>(predicate: TPredicate<T>): TPredicate<T>;

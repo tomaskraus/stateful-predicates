@@ -8,7 +8,7 @@ exports.trueSince = void 0;
  * @param predicate the predicate argument
  * @returns Predicate that returns true since its predicate arguments succeeded.
  *
- * @see {@link PredicateType}
+ * @see {@link TPredicate}
  */
 function trueSince(predicate) {
     let success;

@@ -1,4 +1,4 @@
-import type { PredicateType } from './util/predicate';
+import type { TPredicate } from './util/predicate';
 /**
  * Predicate that stays true "on and after" `predicateForTrue` is successful.
  * Is false at the beginning, and become false again "on and after" `predicateForFalse` is successful.
@@ -22,7 +22,7 @@ import type { PredicateType } from './util/predicate';
  * @param predicateForTrue the predicate argument for switching the `switchTrueFalse` state to false, once fulfilled.
  * @returns A Predicate that stays true "on and after" `predicateForTrue` is successful, and become false again "on and after" `predicateForFalse` is successful.
  *
- * @see {@link PredicateType}
+ * @see {@link TPredicate}
  * @see {@link trueSince}
  */
-export declare function switchTrueFalse<T>(predicateForTrue: PredicateType<T>, predicateForFalse: PredicateType<T>): PredicateType<T>;
+export declare function switchTrueFalse<T>(predicateForTrue: TPredicate<T>, predicateForFalse: TPredicate<T>): TPredicate<T>;

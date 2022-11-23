@@ -1,4 +1,4 @@
-import type { PredicateType } from './util/predicate';
+import type { TPredicate } from './util/predicate';
 /**
  * Predicate that returns true for one element after its predicate argument succeeded.
  *
@@ -18,6 +18,6 @@ import type { PredicateType } from './util/predicate';
  * @param predicate the predicate argument
  * @returns Predicate that returns true for one element after its predicate argument succeeded.
  *
- * @see {@link PredicateType}
+ * @see {@link TPredicate}
  */
-export declare function trueOneAfter<T>(predicate: PredicateType<T>): PredicateType<T>;
+export declare function trueOneAfter<T>(predicate: TPredicate<T>): TPredicate<T>;

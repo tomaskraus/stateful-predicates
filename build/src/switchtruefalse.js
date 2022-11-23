@@ -25,7 +25,7 @@ exports.switchTrueFalse = void 0;
  * @param predicateForTrue the predicate argument for switching the `switchTrueFalse` state to false, once fulfilled.
  * @returns A Predicate that stays true "on and after" `predicateForTrue` is successful, and become false again "on and after" `predicateForFalse` is successful.
  *
- * @see {@link PredicateType}
+ * @see {@link TPredicate}
  * @see {@link trueSince}
  */
 function switchTrueFalse(predicateForTrue, predicateForFalse) {
