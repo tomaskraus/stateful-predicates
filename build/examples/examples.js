@@ -22,4 +22,10 @@ console.log('result0:', result0);
 const result1 = [3, 2, 5, 7, 4, 1].map((0, src_1.trueOneAfter)(isEven));
 console.log('result1:', result1);
 //=> result1: [ false, false, true, false, false, true ]
+// ------------------------
+// const isZero = (x: number) => x === 0;
+// const isMinusOne = (x: number) => x === -1;
+const trueBlocksOfNumbers = [2, 1, 0, 4, 9, -1, 7, 0, 3].filter((0, src_1.switchTrueFalse)((x) => x === 0, (x) => x === -1));
+console.log(trueBlocksOfNumbers);
+//=> [ 0, 4, 9, 0, 3 ]
 //# sourceMappingURL=examples.js.map

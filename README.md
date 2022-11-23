@@ -6,8 +6,8 @@ Bunch of (typed) stateful predicate wrappers:
 
 - trueSince
 - trueOneAfter
+- switchTrueFalse
 - trueOnChange
-- switchOnOff
 
 ## Why to use
 
@@ -110,4 +110,30 @@ const isEven = (x: number) => x % 2 === 0;
 const result = [3, 2, 4, 2, 5, 1].map(trueOneAfter(isEven));
 console.log(result);
 //=> [ false, false, true, true, true, false ]
+```
+
+### switchTrueFalse
+
+```ts
+function switchTrueFalse<T>(
+  predicateForTrue: PredicateType<T>,
+  predicateForFalse: PredicateType<T>
+): PredicateType<T>;
+```
+
+Predicate that stays true "on and after" `predicateForTrue` is successful.  
+Is false at the beginning, and become false again "on and after" `predicateForFalse` is successful.  
+`switchTrueFalse` is able to switch multiple times.
+
+**Example**:
+
+```ts
+const trueBlocksOfNumbers = [2, 1, 0, 4, 9, -1, 7, 0, 3].filter(
+  switchTrueFalse(
+    (x: number) => x === 0,
+    (x: number) => x === -1
+  )
+);
+console.log(trueBlocksOfNumbers);
+//=> [ 0, 4, 9, 0, 3 ]
 ```
