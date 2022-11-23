@@ -58,7 +58,7 @@ Predicate is a function, that accepts some value and returns a boolean value, ba
 
 It's something you can pass as callback to [Array.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) or [RxJS](https://rxjs.dev/api/operators/takeWhile) operators.
 
-Almost every function of `stateful-predicates` library accepts a `PredicateType` argument and returns another `PredicateType` value.
+Almost every function of `stateful-predicates` library accepts at least one `TPredicate` argument and returns another `TPredicate` value.
 
 ### trueSince
 
