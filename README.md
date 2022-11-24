@@ -70,9 +70,8 @@ function switchTrueFalse<T>(
 ```
 
 Returns a predicate(value, index) that:
-Returns a predicate(value, index) that:
 
-1.  Stays true "on and after" `predicateForTrue` is successful on its value/index arguments
+1.  Become true "on and after" `predicateForTrue` is successful on its value/index arguments
 2.  Become false again "on and after" `predicateForFalse` is successful on its value/index arguments
 3.  Is able to switch true/false multiple times.
 
