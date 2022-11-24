@@ -3,8 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.switchTrueFalse = void 0;
 /* exported trueSince */
 /**
- * Predicate that stays true "on and after" `predicateForTrue` is successful.
- * Is false at the beginning, and become false again "on and after" `predicateForFalse` is successful.
+ * Returns a predicate(value, index) that:
+ * 1. stays true "on and after" `predicateForTrue` is successful on its value/index arguments
+ * 2. become false again "on and after" `predicateForFalse` is successful on its value/index arguments
+ * At the beginning, that predicate is false.
  *
  * `switchTrueFalse` is able to switch multiple times.
  *
@@ -23,7 +25,7 @@ exports.switchTrueFalse = void 0;
  * @template T The type of input element.
  * @param predicateForTrue the predicate argument for switching the `switchTrueFalse` state to true, once fulfilled.
  * @param predicateForTrue the predicate argument for switching the `switchTrueFalse` state to false, once fulfilled.
- * @returns A Predicate that stays true "on and after" `predicateForTrue` is successful, and become false again "on and after" `predicateForFalse` is successful.
+ * @returns A Predicate(value, index) that stays true "on and after" `predicateForTrue` is successful on its value/index arguments, and become false again "on and after" `predicateForFalse` is successful on its value/index arguments.
  *
  * @see {@link TPredicate}
  * @see {@link trueSince}

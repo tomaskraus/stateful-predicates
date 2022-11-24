@@ -69,9 +69,12 @@ function switchTrueFalse<T>(
 ): TPredicate<T>;
 ```
 
-Predicate that stays true "on and after" `predicateForTrue` is successful.  
-Is false at the beginning, and become false again "on and after" `predicateForFalse` is successful.  
-`switchTrueFalse` is able to switch multiple times.
+Returns a predicate(value, index) that:
+Returns a predicate(value, index) that:
+
+1.  Stays true "on and after" `predicateForTrue` is successful on its value/index arguments
+2.  Become false again "on and after" `predicateForFalse` is successful on its value/index arguments
+3.  Is able to switch true/false multiple times.
 
 **Example**:
 
