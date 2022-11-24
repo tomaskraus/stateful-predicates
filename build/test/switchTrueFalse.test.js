@@ -105,10 +105,11 @@ test('switchTrueFalse - alternates output if both predicates are the same', () =
 });
 // ---------------------------------------------
 test('switchTrueFalse - trueSince emulation - index', () => {
-    function trueSince2(predicate) {
+    const def1 = truesince_1.trueSince;
+    const def2 = function (predicate) {
         return (0, switchtruefalse_1.switchTrueFalse)(predicate, () => false);
-    }
+    };
     const nums = [2, 4, 3, 5, 0, 3, 3];
-    expect(nums.filter(trueSince2(helpers_1.isIndexEqualThree))).toEqual(nums.filter((0, truesince_1.trueSince)(helpers_1.isIndexEqualThree)));
+    expect(nums.filter(def1(helpers_1.isIndexEqualThree))).toEqual(nums.filter(def2(helpers_1.isIndexEqualThree)));
 });
 //# sourceMappingURL=switchTrueFalse.test.js.map

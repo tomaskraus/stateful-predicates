@@ -105,6 +105,15 @@ console.log(res);
 //=> [ 3, 5, 0, 3, 3 ]
 ```
 
+**Note**: One can replace `trueSince` with `switchTrueFalse`. These two expressions are equvivalent:
+
+```ts
+// 1
+trueSince(predicate);
+// 2
+switchTrueFalse(predicate, () => false);
+```
+
 ### trueOneAfter
 
 ```ts

@@ -166,11 +166,12 @@ test('switchTrueFalse - alternates output if both predicates are the same', () =
 // ---------------------------------------------
 
 test('switchTrueFalse - trueSince emulation - index', () => {
-  function trueSince2<T>(predicate: TPredicate<T>) {
+  const def1 = trueSince;
+  const def2 = function <T>(predicate: TPredicate<T>) {
     return switchTrueFalse(predicate, () => false);
-  }
+  };
   const nums = [2, 4, 3, 5, 0, 3, 3];
-  expect(nums.filter(trueSince2(isIndexEqualThree))).toEqual(
-    nums.filter(trueSince(isIndexEqualThree))
+  expect(nums.filter(def1(isIndexEqualThree))).toEqual(
+    nums.filter(def2(isIndexEqualThree))
   );
 });
