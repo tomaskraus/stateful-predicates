@@ -146,3 +146,48 @@ const result = [3, 2, 4, 2, 5, 1].map(trueOneAfter(isEven));
 console.log(result);
 //=> [ false, false, true, true, true, false ]
 ```
+
+**Example 2**:
+Show only documentation comments from _TypeScript_ input text:
+
+```ts
+import {switchTrueFalse, trueOneAfter} from 'stateful-predicates';
+
+const input = `
+  /** 
+   * fn1
+   * not very useful
+   */
+  function greaterThanOne(x: number): boolean {
+    return x > 1;
+  }
+
+  /**
+   * An increment function
+   * @param x number value
+   * @returns that value incremented by one
+   */
+  const inc = (x: number) => ++x;`;
+
+const docCommentPredicate = () =>
+  switchTrueFalse<string>(
+    s => /\/\*\*/.test(s), // true at begin-mark
+    trueOneAfter(s => /\*\//.test(s)) // false after end-mark
+  );
+
+// prettier-ignore
+const onlyDocComments = input
+  .split('\n')
+  .filter(docCommentPredicate())
+  .join('\n');
+console.log(onlyDocComments);
+//=> /**
+//    * fn1
+//    * not very useful
+//    */
+//   /**
+//    * An increment function
+//    * @param x number value
+//    * @returns that value incremented by one
+//    */
+```
