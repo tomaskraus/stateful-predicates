@@ -105,7 +105,7 @@ console.log(res);
 //=> [ 3, 5, 0, 3, 3 ]
 ```
 
-**Note**: One can replace `trueSince` with `switchTrueFalse`. These two expressions are equvivalent:
+**Note**: One can replace `trueSince` with `switchTrueFalse`. These two expressions are equivalent:
 
 ```ts
 // 1
