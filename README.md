@@ -4,9 +4,9 @@
 
 Bunch of (typed) stateful predicate wrappers:
 
-- trueSince
-- trueOneAfter
-- switchTrueFalse
+- [switchTrueFalse](#switchtruefalse)
+- [trueSince](#truesince)
+- [trueOneAfter](#trueoneafter)
 - trueOnChange
 
 ## Why to use
@@ -60,6 +60,32 @@ It's something you can pass as callback to [Array.filter](https://developer.mozi
 
 Almost every function of `stateful-predicates` library accepts at least one `TPredicate` argument and returns another `TPredicate` value.
 
+### switchTrueFalse
+
+```ts
+function switchTrueFalse<T>(
+  predicateForTrue: TPredicate<T>,
+  predicateForFalse: TPredicate<T>
+): TPredicate<T>;
+```
+
+Predicate that stays true "on and after" `predicateForTrue` is successful.  
+Is false at the beginning, and become false again "on and after" `predicateForFalse` is successful.  
+`switchTrueFalse` is able to switch multiple times.
+
+**Example**:
+
+```ts
+const trueBlocksOfNumbers = [2, 1, 0, 4, 9, -1, 7, 0, 3].filter(
+  switchTrueFalse(
+    (x: number) => x === 0,
+    (x: number) => x === -1
+  )
+);
+console.log(trueBlocksOfNumbers);
+//=> [ 0, 4, 9, 0, 3 ]
+```
+
 ### trueSince
 
 ```ts
@@ -110,30 +136,4 @@ const isEven = (x: number) => x % 2 === 0;
 const result = [3, 2, 4, 2, 5, 1].map(trueOneAfter(isEven));
 console.log(result);
 //=> [ false, false, true, true, true, false ]
-```
-
-### switchTrueFalse
-
-```ts
-function switchTrueFalse<T>(
-  predicateForTrue: TPredicate<T>,
-  predicateForFalse: TPredicate<T>
-): TPredicate<T>;
-```
-
-Predicate that stays true "on and after" `predicateForTrue` is successful.  
-Is false at the beginning, and become false again "on and after" `predicateForFalse` is successful.  
-`switchTrueFalse` is able to switch multiple times.
-
-**Example**:
-
-```ts
-const trueBlocksOfNumbers = [2, 1, 0, 4, 9, -1, 7, 0, 3].filter(
-  switchTrueFalse(
-    (x: number) => x === 0,
-    (x: number) => x === -1
-  )
-);
-console.log(trueBlocksOfNumbers);
-//=> [ 0, 4, 9, 0, 3 ]
 ```
