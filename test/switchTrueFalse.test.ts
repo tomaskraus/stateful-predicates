@@ -71,8 +71,7 @@ test('switchTrueFalse - shared closure - index', () => {
   ]);
 });
 
-test('switchTrueFalse - this', () => {
-  // without explicit this
+test('switchTrueFalse - this - fn call without explicit this', () => {
   expect(
     [2, 4, 3, 5, 2, 3, -1, 2].map(
       switchTrueFalse(
@@ -81,7 +80,9 @@ test('switchTrueFalse - this', () => {
       )
     )
   ).toEqual([false, false, false, false, false, false, false, false]);
+});
 
+test('switchTrueFalse - this - fn call with this', () => {
   expect(
     [2, 4, 3, 5, 2, 3, -1, 2].map(
       switchTrueFalse(
@@ -89,6 +90,17 @@ test('switchTrueFalse - this', () => {
         isMinusOne
       ),
       customThis
+    )
+  ).toEqual([false, false, false, true, true, true, false, false]);
+});
+
+test('switchTrueFalse - this - bind this', () => {
+  expect(
+    [2, 4, 3, 5, 2, 3, -1, 2].map(
+      switchTrueFalse(
+        isIndexEqualThreeAndThisObjectHasMyPropDefined,
+        isMinusOne
+      ).bind(customThis)
     )
   ).toEqual([false, false, false, true, true, true, false, false]);
 });
