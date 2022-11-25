@@ -1,11 +1,10 @@
 import type { TPredicate } from './util/predicate';
 /**
  * Returns a predicate(value, index) that:
- * 1. stays true "on and after" `predicateForTrue` is successful on its value/index arguments
- * 2. become false again "on and after" `predicateForFalse` is successful on its value/index arguments
+ * 1. Stays true "on and after" `predicateForTrue` is successful on its value/index arguments
+ * 2. Become false again "on and after" `predicateForFalse` is successful on its value/index arguments
  * At the beginning, that predicate is false.
- *
- * `switchTrueFalse` is able to switch multiple times.
+ * 3. Is able to switch true/false multiple times.
  *
  * @example
  * ```ts
