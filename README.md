@@ -18,9 +18,9 @@ Bring new power to standard predicates, when using Array.filter or other predica
 import {switchTrueFalse, nthElementAfter} from 'stateful-predicates';
 
 // prettier-ignore
-const linesInsideABlockComment = lines.filter(
+const linesInsideADocBlockComment = lines.filter(
     switchTrueFalse(
-      nthElementAfter(1, s => /\/\*/i.test(s)),   // start to "return true" one line after a `/*`
+      nthElementAfter(1, s => /\/\*\*/i.test(s)),   // start to "return true" one line after a `/**`
       s => /\*\//i.test(s)                        // start to "return false" on a line with `*/`
     )
   );
