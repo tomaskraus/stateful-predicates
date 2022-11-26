@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const switchtruefalse_1 = require("../src/switchtruefalse");
 const helpers_1 = require("./helpers");
-const truesince_1 = require("../src/truesince");
 test('switchTrueFalse', () => {
     expect([2, 0, 3, -1, 1].map((0, switchtruefalse_1.switchTrueFalse)(helpers_1.isZero, helpers_1.isMinusOne))).toEqual([
         false,
@@ -91,7 +90,12 @@ test('switchTrueFalse - adjacent matches', () => {
     expect([3, 0, 6, -1, 0, -1, 3].map((0, switchtruefalse_1.switchTrueFalse)(helpers_1.isZero, helpers_1.isMinusOne))).toEqual([false, true, true, false, true, false, false]);
 });
 test('switchTrueFalse - greedy behavior', () => {
-    expect([3, 0, 0, 2, 0, -1, -1, 2, -1].map((0, switchtruefalse_1.switchTrueFalse)(helpers_1.isZero, helpers_1.isMinusOne))).toEqual([false, true, true, true, true, false, false, false, false]);
+    expect([0, 0, -1, -1].map((0, switchtruefalse_1.switchTrueFalse)(helpers_1.isZero, helpers_1.isMinusOne))).toEqual([
+        true,
+        true,
+        false,
+        false,
+    ]);
 });
 test('switchTrueFalse - alternates output if both predicates are the same', () => {
     expect([0, 0, 0, 2, 0, 0].map((0, switchtruefalse_1.switchTrueFalse)(helpers_1.isZero, helpers_1.isZero))).toEqual([
@@ -102,14 +106,5 @@ test('switchTrueFalse - alternates output if both predicates are the same', () =
         false,
         true,
     ]);
-});
-// ---------------------------------------------
-test('switchTrueFalse - trueSince emulation - index', () => {
-    const def1 = truesince_1.trueSince;
-    const def2 = function (predicate) {
-        return (0, switchtruefalse_1.switchTrueFalse)(predicate, () => false);
-    };
-    const nums = [2, 4, 3, 5, 0, 3, 3];
-    expect(nums.filter(def1(helpers_1.isIndexEqualThree))).toEqual(nums.filter(def2(helpers_1.isIndexEqualThree)));
 });
 //# sourceMappingURL=switchTrueFalse.test.js.map

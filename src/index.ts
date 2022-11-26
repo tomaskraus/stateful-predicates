@@ -1,3 +1,2 @@
-export * from './truesince';
-export * from './trueoneafter';
+export * from './nthelementafter';
 export * from './switchtruefalse';

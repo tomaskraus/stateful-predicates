@@ -7,9 +7,6 @@ import {
   customThis,
 } from './helpers';
 
-import {trueSince} from '../src/truesince';
-import type {TPredicate} from './util/predicate';
-
 test('switchTrueFalse', () => {
   expect([2, 0, 3, -1, 1].map(switchTrueFalse(isZero, isMinusOne))).toEqual([
     false,
@@ -147,9 +144,12 @@ test('switchTrueFalse - adjacent matches', () => {
 });
 
 test('switchTrueFalse - greedy behavior', () => {
-  expect(
-    [3, 0, 0, 2, 0, -1, -1, 2, -1].map(switchTrueFalse(isZero, isMinusOne))
-  ).toEqual([false, true, true, true, true, false, false, false, false]);
+  expect([0, 0, -1, -1].map(switchTrueFalse(isZero, isMinusOne))).toEqual([
+    true,
+    true,
+    false,
+    false,
+  ]);
 });
 
 test('switchTrueFalse - alternates output if both predicates are the same', () => {
@@ -161,17 +161,4 @@ test('switchTrueFalse - alternates output if both predicates are the same', () =
     false,
     true,
   ]);
-});
-
-// ---------------------------------------------
-
-test('switchTrueFalse - trueSince emulation - index', () => {
-  const def1 = trueSince;
-  const def2 = function <T>(predicate: TPredicate<T>) {
-    return switchTrueFalse(predicate, () => false);
-  };
-  const nums = [2, 4, 3, 5, 0, 3, 3];
-  expect(nums.filter(def1(isIndexEqualThree))).toEqual(
-    nums.filter(def2(isIndexEqualThree))
-  );
 });
