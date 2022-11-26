@@ -6,7 +6,8 @@ Bunch of (typed) stateful predicate wrappers:
 
 - [switchTrueFalse](#switchtruefalse)
 - [nthElementAfter](#nthelementafter)
-- trueOnChange
+- [nthMatch](#nthmatch)
+- [onChange](#onChange)
 
 ## Why to use
 
@@ -129,6 +130,10 @@ const result = [3, 2, 2, 2, 5, 1].map(nthElementAfter(1, x => x === 2));
 console.log(result);
 //=> [ false, false, true, false, true, false ]
 ```
+
+### nthMatch
+
+### onChange
 
 ## Complete Example
 
