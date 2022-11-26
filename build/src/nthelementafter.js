@@ -24,7 +24,7 @@ console.log(secondElemsAfter3);
 //=> [ 7, -8 ]
  * ```
  *
- * - `P` is **greedy**: enters "offset countdown" mode when its `parentPredicate` matches an element. While in "offset countdown" mode, does not detect elements for any match.
+ * - `P` is **greedy**: tries to match as soon as possible. If there are more elements within the "`offset` range" `parentPredicate` could match, they are not recognized.
  * - `P` is **repeatable**: is ready to detect elements again as soon as it is at least `offset` elements after its last detected element.
  *
  * @see {@link TPredicate}
