@@ -5,24 +5,28 @@
 Bunch of (typed) stateful predicate wrappers:
 
 - [switchTrueFalse](#switchtruefalse)
-- [trueSince](#truesince)
-- [trueOneAfter](#trueoneafter)
+- [nthElementAfter](#nthelementafter)
 - trueOnChange
 
 ## Why to use
 
 Bring new power to standard predicates, when using Array.filter or other predicate-demanding methods.
 
-**Example**: We want only lines after (and with) a line that contains a "[footer]" tag.
+**Example**: Get an inside of a block documetation comment:
 
 ```ts
-import {trueSince} from 'stateful-predicates';
+import {switchTrueFalse, nthElementAfter} from 'stateful-predicates';
 
 // prettier-ignore
-const footerLines = lines.filter(
-    trueSince(s => /\[footer]/i.test(s))
+const linesInsideABlockComment = lines.filter(
+    switchTrueFalse(
+      nthElementAfter(1, s => /\/\*/i.test(s)),   // start to "return true" one line after a `/*`
+      s => /\*\//i.test(s)                        // start to "return false" on a line with `*/`
+    )
   );
 ```
+
+see a [complete example](#complete-example)
 
 ## Installation
 
@@ -69,91 +73,70 @@ function switchTrueFalse<T>(
 ): TPredicate<T>;
 ```
 
-Returns a predicate(value, index) that:
+Returns a predicate(value, index) `P` that:
 
-1.  Become true "on and after" `predicateForTrue` is successful on its value/index arguments
-2.  Become false again "on and after" `predicateForFalse` is successful on its value/index arguments
-3.  Is able to switch true/false multiple times.
+1.  Stays _true_ "on and after" `predicateForTrue` is successful on its `value`/`index` arguments
+2.  Becomes _false_ again "on and after" `predicateForFalse` is successful on its `value`/`index` arguments
+    At the beginning, that predicate is false.
+3.  Is **reusable**: able to switch _true_/_false_ multiple times.
+4.  Is **greedy**:
+
+- switches to _true_ on the first of consecutive elements `predicateForTrue` can match
+- switches to _false_ on the first of consecutive elements `predicateForFalse` can match
 
 **Example**:
 
 ```ts
-const trueBlocksOfNumbers = [2, 1, 0, 4, 9, -1, 7, 0, 3].filter(
+const elementsBetweenZeroAndMinusOne = [2, 1, 0, 0, 5, 9, -1, -1, 7].filter(
   switchTrueFalse(
-    (x: number) => x === 0,
-    (x: number) => x === -1
+    x => x === 0,
+    x => x === -1
   )
 );
-console.log(trueBlocksOfNumbers);
-//=> [ 0, 4, 9, 0, 3 ]
+console.log(elementsBetweenZeroAndMinusOne);
+//=> [ 0, 0, 5, 9 ]
 ```
 
-### trueSince
+### nthElementAfter
 
 ```ts
-function trueSince<T>(predicate: TPredicate<T>): TPredicate<T>;
+function nthElementAfter<T>(
+  offset: number,
+  parentPredicate: TPredicate<T>
+): TPredicate<T>;
 ```
 
-Returns a predicate that returns true since its predicate arguments succeeded.  
-That is, after that, in every next call, this predicate always returns true.
+Returns predicate(value, index) `P`, that:
+
+- returns _true_ if its `parentPredicate` has succeeded at element `offset` number of elements before.
 
 **Example**:
 
 ```ts
-const isEqualToThree = x => x === 3;
-
-const res = [2, 4, 3, 5, 0, 3, 3].filter(trueSince(isEqualToThree));
-console.log(res);
-//=> [ 3, 5, 0, 3, 3 ]
+const isThree = (x: number) => x === 3;
+const secondElemsAfter3 = [2, 3, 0, 7, 4, 3, 5, -8].filter(
+  nthElementAfter(2, isThree)
+);
+console.log(secondElemsAfter3);
+//=> [ 7, -8 ]
 ```
 
-**Note**: One can replace `trueSince` with `switchTrueFalse`. These two expressions are equivalent:
+- `P` is **greedy**: enters "offset countdown" mode when its `parentPredicate` matches an element. While in "offset countdown" mode, does not detect elements for any match.
+
+- `P` is **repeatable**: is ready to detect elements again as soon as it is more than `offset` elements after its last detected element.
 
 ```ts
-// 1
-trueSince(predicate);
-// 2
-switchTrueFalse(predicate, () => false);
-```
-
-### trueOneAfter
-
-```ts
-function trueOneAfter<T>(predicate: TPredicate<T>): TPredicate<T>;
-```
-
-Predicate that returns true for one element after its predicate argument succeeded.
-
-**Example**:
-
-```ts
-const isEven = (x: number) => x % 2 === 0;
-
-const result0 = [3, 2, 5, 7, 4, 1].map(isEven);
-console.log('result0:', result0);
-//=> result0: [ false, true, false, false, true, false ]
-const result1 = [3, 2, 5, 7, 4, 1].map(trueOneAfter(isEven));
-console.log('result1:', result1);
-//=> result1: [ false, false, true, false, false, true ]
-```
-
-`trueOneAfter` is greedy: for several consecutive success-elements, `trueAfterOne` detects the first of them and returns true on the second one, and so on.
-
-`trueOneAfter` returns true as nearly (and as long) as its predicate argument succeeded at previous element:
-
-```ts
-const isEven = (x: number) => x % 2 === 0;
-
-const result = [3, 2, 4, 2, 5, 1].map(trueOneAfter(isEven));
+const result = [3, 2, 2, 2, 5, 1].map(nthElementAfter(1, x => x === 2));
 console.log(result);
-//=> [ false, false, true, true, true, false ]
+//=> [ false, false, true, false, true, false ]
 ```
 
-**Example 2**:
+## Complete Example
+
 Show only documentation comments from _TypeScript_ input text:
 
 ```ts
-import {switchTrueFalse, trueOneAfter} from 'stateful-predicates';
+import {switchTrueFalse, nthElementAfter} from 'stateful-predicates';
 
 const input = `
   /** 
@@ -174,7 +157,7 @@ const input = `
 const docCommentPredicate = () =>
   switchTrueFalse<string>(
     s => /\/\*\*/.test(s), // true at begin-mark
-    trueOneAfter(s => /\*\//.test(s)) // false after end-mark
+    nthElementAfter(1, s => /\*\//.test(s)) // false after end-mark
   );
 
 // prettier-ignore

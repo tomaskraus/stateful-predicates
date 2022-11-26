@@ -1,7 +1,7 @@
 {
   "name": "stateful-predicates",
   "version": "0.1.0",
-  "description": "Bunch of stateful predicate wrappers. Such as trueSince, trueOnChange, trueOneAfter...",
+  "description": "Bunch of stateful predicate wrappers. RxJS & Array.filter compliant.",
   "types": "build/src/index.d.ts",
   "main": "build/src/index.js",
   "files": [
