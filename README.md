@@ -130,6 +130,8 @@ console.log(secondElemsAfter3);
 //=> [ 7, -8 ]
 ```
 
+It kind of shifts (or delays) the succesful element evaluation.
+
 - `P` is **greedy**: tries to succeed as soon as possible. If there are more elements within the "`offset` range" `parentPredicate` could succeed, they are not recognized.
 - `P` is **repeatable**: is ready to detect elements again as soon as it is at least `offset` elements after its last detected element.
 
