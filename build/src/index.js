@@ -16,4 +16,5 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./nthelementafter"), exports);
 __exportStar(require("./switchtruefalse"), exports);
+__exportStar(require("./onchange"), exports);
 //# sourceMappingURL=index.js.map

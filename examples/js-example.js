@@ -1,4 +1,4 @@
-const {nthElementAfter, switchTrueFalse} = require('../build/src');
+const {nthElementAfter, switchTrueFalse, onChange} = require('../build/src');
 
 const input = `
   /** 
@@ -64,3 +64,7 @@ const secondElemsAfter3 = [2, 3, 0, 7, 4, 3, 5, -8].filter(
   nthElementAfter(2, isThree)
 );
 console.log(secondElemsAfter3);
+
+const changes = [2, 3, 3, 3, 4, 3, 5, -8].map(onChange(isThree));
+console.log(changes);
+//=> [ false, true, false, false, true, true, true, false ]
