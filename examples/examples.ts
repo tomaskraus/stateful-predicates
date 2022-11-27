@@ -51,8 +51,10 @@ console.log('----------------');
 
 const input = `
   /** 
-   * fn1
-   * not very useful
+   * greaterThanOne
+   * @param x number value
+   * @returns true if x is greater than one, false otherwise
+   */
    */
   function greaterThanOne(x: number): boolean {
     return x > 1;
@@ -67,8 +69,8 @@ const input = `
 
 const docCommentPredicate = () =>
   switchTrueFalse<string>(
-    s => /\/\*\*/.test(s), // true at begin-mark
-    nthElementAfter(1, s => /\*\//.test(s)) // false after end-mark
+    s => /\/\*\*/.test(s), // true at '/**' (begin-mark)
+    nthElementAfter(1, s => /\*\//.test(s)) // false after '*/' (end-mark)
   );
 
 // prettier-ignore
@@ -78,8 +80,9 @@ const onlyDocComments = input
   .join('\n');
 console.log(onlyDocComments);
 //=> /**
-//    * fn1
-//    * not very useful
+//    * greaterThanOne
+//    * @param x number value
+//    * @returns true if x is greater than one, false otherwise
 //    */
 //   /**
 //    * An increment function

@@ -1,19 +1,19 @@
 import type { TPredicate } from './util/predicate';
 /**
- * Returns a predicate(value, index) `P` that:
- * 1. Stays _true_ "on and after" `predicateForTrue` is successful on its `value`/`index` arguments
- * 2. Becomes _false_ again "on and after" `predicateForFalse` is successful on its `value`/`index` arguments
- * At the beginning, that predicate is false.
- * 3. Is **reusable**: able to switch _true_/_false_ multiple times.
- * 4. Is **greedy**:
- *   - switches to _true_ on the first of consecutive elements `predicateForTrue` can match
- *   - switches to _false_ on the first of consecutive elements `predicateForFalse` can match
- *
+ * Returns a predicate(value, index) `P` that fulfills the following:
+1.  `P` stays _true_ "on and after" `predicateForTrue` has succeeded on some element
+2.  `P` becomes _false_ again "on and after" `predicateForFalse` has succeeded on some element that follows.
+    At the beginning, `P` is _false_.
+3.  `P` is **reusable**: able to switch _true_/_false_ multiple times.
+4.  `P` is **greedy**:
+
+- switches to _true_ on the first of consecutive elements `predicateForTrue` can succeed
+- switches to _false_ on the first of consecutive elements `predicateForFalse` can succeed
  *
  * @template T The type of input element.
- * @param predicateForTrue the predicate argument for switching `predicate P's` state to true, once fulfilled.
- * @param predicateForFalse the predicate argument for switching `predicate P's` state to false, once fulfilled.
- * @returns A Predicate(value, index) that stays _true_ "on and after" `predicateForTrue` is successful on its value/index arguments, and becomes _false_ again "on and after" `predicateForFalse` is successful on its value/index arguments.
+ * @param predicateForTrue the predicate that, once fulfilled, switches the `predicate P's` state to _true_.
+ * @param predicateForFalse the predicate that, once fulfilled, switches the `predicate P's` state to _false_.
+ * @returns A Predicate(value, index) that stays _true_ "on and after" `predicateForTrue` has succeeded on some element, and becomes _false_ again "on and after" `predicateForFalse` has succeeded on some element that follows.
  *
  * @see {@link TPredicate}
  *
