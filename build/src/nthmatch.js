@@ -3,11 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.nthMatch = void 0;
 /**
  * Returns predicate(value, index) `P`, that:
- * - returns _true_ if its `parentPredicate` has succeeded exactly on `n` elements
+ * - returns _true_ if its `parentPredicate` has succeeded `n` times
  * @template T The type of input element
  * @param n the number of elements `parent predicate` must match
  * @param parentPredicate parent predicate
- * @returns `predicate(value, index)`, that returns _true_ if its `parentPredicate` has succeeded exactly on `n` elements
+ * @returns `predicate(value, index)`, that returns _true_ if its `parentPredicate` has succeeded `n` times
  * @example
  *
  * ```ts

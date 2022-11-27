@@ -140,7 +140,7 @@ function nthMatch<T>(n: number, parentPredicate: TPredicate<T>): TPredicate<T>;
 
 Returns predicate(value, index) `P`, that:
 
-- returns _true_ if its `parentPredicate` has succeeded exactly on `n` elements
+- returns _true_ if its `parentPredicate` has succeeded `n` times
 
 **Example**:
 
