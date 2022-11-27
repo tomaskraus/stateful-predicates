@@ -1,3 +1,4 @@
+![build](https://github.com/tomaskraus/stateful-predicates/actions/workflows/node.js.yml/badge.svg)
 [![Code Style: Google](https://img.shields.io/badge/code%20style-google-blueviolet.svg)](https://github.com/google/gts)
 
 # stateful-predicates
