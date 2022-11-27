@@ -1,4 +1,9 @@
-const {nthElementAfter, switchTrueFalse, onChange} = require('../build/src');
+const {
+  nthElementAfter,
+  switchTrueFalse,
+  nthMatch,
+  onChange,
+} = require('../build/src');
 
 const input = `
   /** 
@@ -68,3 +73,8 @@ console.log(secondElemsAfter3);
 const changes = [2, 3, 3, 3, 4, 3, 5, -8].map(onChange(isThree));
 console.log(changes);
 //=> [ false, true, false, false, true, true, true, false ]
+
+const isEven = x => x % 2 === 0;
+const secondMatchingElem = [2, 3, 5, 4, 8, 5, -8].filter(nthMatch(2, isEven));
+console.log(secondMatchingElem);
+//=> [ 4 ]

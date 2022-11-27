@@ -134,6 +134,23 @@ console.log(result);
 
 ### nthMatch
 
+```ts
+function nthMatch<T>(n: number, parentPredicate: TPredicate<T>): TPredicate<T>;
+```
+
+Returns predicate(value, index) `P`, that:
+
+- returns _true_ if its `parentPredicate` has succeeded exactly on `n` elements
+
+**Example**:
+
+```ts
+const isEven = x => x % 2 === 0;
+const secondMatchingElem = [2, 3, 5, 4, 8, 5, -8].filter(nthMatch(2, isEven));
+console.log(secondMatchingElem);
+//=> [ 4 ]`
+```
+
 ### onChange
 
 ```ts
