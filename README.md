@@ -7,7 +7,7 @@ Bunch of (typed) stateful predicate wrappers:
 - [switchTrueFalse](#switchtruefalse)
 - [nthElementAfter](#nthelementafter)
 - [nthMatch](#nthmatch)
-- [onChange](#onChange)
+- [onChange](#onchange)
 
 ## Why to use
 
