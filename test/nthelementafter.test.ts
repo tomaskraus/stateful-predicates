@@ -63,6 +63,16 @@ test('nthElementAfter - more isolated matches', () => {
   ]);
 });
 
+test('nthElementAfter - potential match is eaten at the offset end', () => {
+  expect([3, 4, 3, 0, 7].map(nthElementAfter(2, isEqualToThree))).toEqual([
+    false,
+    false,
+    true,
+    false,
+    false,
+  ]);
+});
+
 test('nthElementAfter - more isolated matches - offset=1', () => {
   expect([3, 4, 6, 3, 0, 7].map(nthElementAfter(1, isEqualToThree))).toEqual([
     false,
