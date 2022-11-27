@@ -1,12 +1,5 @@
 import type {TPredicate} from './util/predicate';
 
-const isThree = (x: number) => x === 3;
-const secondElemsAfter3 = [2, 3, 0, 7, 4, 3, 5, -8].filter(
-  nthElementAfter(2, isThree)
-);
-console.log('result1:', secondElemsAfter3);
-//=> [ 7, -8 ]
-
 /**
  * Returns predicate(value, index) `P`, that:
  * - returns _true_ if its `parentPredicate` has succeeded at element `offset` number of elements before. *
