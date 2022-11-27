@@ -135,6 +135,25 @@ console.log(result);
 
 ### onChange
 
+```ts
+function onChange<T>(parentPredicate: TPredicate<T>): TPredicate<T>;
+```
+
+Returns predicate(value, index) `P`, that:
+
+- returns _true_ whenever its `parentPredicate` changes value - i.e. result of `parent predicate` differs from `P`'s internal state.
+
+At the begin, the internal state of `P` is _false_.
+
+**Example**:
+
+```ts
+const isThree = (x: number) => x === 3;
+const changes = [2, 3, 3, 3, 4, 3, 5, -8].map(onChange(isThree));
+console.log(changes);
+//=> [ false, true, false, false, true, true, true, false ]
+```
+
 ## Complete Example
 
 Show only documentation comments from _TypeScript_ input text:
