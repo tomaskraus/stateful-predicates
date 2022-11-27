@@ -2,7 +2,7 @@ import type {TPredicate} from './util/predicate';
 
 /**
  * Returns predicate(value, index) `P`, that:
- * - returns _true_ if its `parentPredicate` has succeeded at element `offset` number of elements before. *
+ * - returns _true_ if its `parentPredicate` has succeeded at element `offset` number of elements before.
  * @template T The type of input element
  * @param offset the number of elements to go after the `parentPredicate` succeeded.
  * @param parentPredicate predicate
