@@ -1,4 +1,5 @@
 ![build](https://github.com/tomaskraus/stateful-predicates/actions/workflows/node.js.yml/badge.svg)
+[![codecov](https://codecov.io/gh/tomaskraus/stateful-predicates/branch/main/graph/badge.svg?token=MDg1JIIPnx)](https://codecov.io/gh/tomaskraus/stateful-predicates)
 [![Code Style: Google](https://img.shields.io/badge/code%20style-google-blueviolet.svg)](https://github.com/google/gts)
 
 # stateful-predicates
