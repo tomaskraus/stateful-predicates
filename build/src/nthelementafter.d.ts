@@ -16,6 +16,9 @@ const secondElemsAfter3 = [2, 3, 0, 7, 4, 3, 5, -8].filter(
 );
 console.log(secondElemsAfter3);
 //=> [ 7, -8 ]
+
+It kind of shifts (or delays) the succesful element evaluation.
+
  * ```
  *
  * - `P` is **greedy**: tries to succeed as soon as possible. If there are more elements within the "`offset` range" `parentPredicate` could succeed on, they are not recognized.
