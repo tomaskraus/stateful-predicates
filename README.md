@@ -99,13 +99,13 @@ Returns a predicate(value, index) `P` that fulfills the following:
 **Example**:
 
 ```ts
-const elementsBetweenZeroAndMinusOne = [2, 1, 0, 0, 5, 9, -1, -1, 7].filter(
+const elementsEnclosedByZeroAndMinusOne = [2, 1, 0, 0, 5, 9, -1, -1, 7].filter(
   switchTrueFalse(
     x => x === 0,
     x => x === -1
   )
 );
-console.log(elementsBetweenZeroAndMinusOne);
+console.log(elementsEnclosedByZeroAndMinusOne);
 //=> [ 0, 0, 5, 9 ]
 ```
 
