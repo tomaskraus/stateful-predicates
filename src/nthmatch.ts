@@ -2,11 +2,11 @@ import type {TPredicate} from './util/predicate';
 
 /**
  * Returns predicate(value, index) `P`, that:
- * - returns _true_ if its `parentPredicate` has succeeded `n` times
+ * - returns _true_ if its `innerPredicate` has succeeded `n` times
  * @template T The type of input element
- * @param n the number of elements `parent predicate` must match
- * @param parentPredicate parent predicate
- * @returns `predicate(value, index)`, that returns _true_ if its `parentPredicate` has succeeded `n` times
+ * @param n the number of elements `innerPredicate` must match
+ * @param innerPredicate inner predicate
+ * @returns `predicate(value, index)`, that returns _true_ if its `innerPredicate` has succeeded `n` times
  * @example
  *
  * ```ts
@@ -20,7 +20,7 @@ console.log(secondMatchingElem);
  */
 export function nthMatch<T>(
   n: number,
-  parentPredicate: TPredicate<T>
+  innerPredicate: TPredicate<T>
 ): TPredicate<T> {
   if (n < 1) {
     throw new Error(
@@ -29,7 +29,7 @@ export function nthMatch<T>(
   }
   let matchCounter = 0;
   return function (this: any, value: T, index: number): boolean {
-    if (parentPredicate.call(this, value, index)) {
+    if (innerPredicate.call(this, value, index)) {
       matchCounter++;
       if (matchCounter === n) {
         return true;

@@ -2,12 +2,12 @@ import type {TPredicate} from './util/predicate';
 
 /**
  * Returns predicate(value, index) `P`, that:
- * - returns _true_ whenever its `parentPredicate` changes value - i.e. result of `parent predicate` differs from `P`'s internal state.
+ * - returns _true_ whenever its `innerPredicate` changes value - i.e. result of `innerPredicate` differs from `P`'s internal state.
  *
  * At the begin, the internal state of `P` is _false_.
  * @template T The type of input element
- * @param parentPredicate predicate
- * @returns `predicate(value, index)`, that returns _true_ whenever its `parentPredicate` changes value.
+ * @param innerPredicate predicate
+ * @returns `predicate(value, index)`, that returns _true_ whenever its `innerPredicate` changes value.
  *
  * @example
  *
@@ -20,10 +20,10 @@ console.log(changes);
  *
  * @see {@link TPredicate}
  */
-export function onChange<T>(parentPredicate: TPredicate<T>): TPredicate<T> {
+export function onChange<T>(innerPredicate: TPredicate<T>): TPredicate<T> {
   let state = false;
   return function (this: any, value: T, index: number): boolean {
-    const result = parentPredicate.call(this, value, index);
+    const result = innerPredicate.call(this, value, index);
     if (!state && result) {
       state = true;
       return true;

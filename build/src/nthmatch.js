@@ -3,11 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.nthMatch = void 0;
 /**
  * Returns predicate(value, index) `P`, that:
- * - returns _true_ if its `parentPredicate` has succeeded `n` times
+ * - returns _true_ if its `innerPredicate` has succeeded `n` times
  * @template T The type of input element
- * @param n the number of elements `parent predicate` must match
- * @param parentPredicate parent predicate
- * @returns `predicate(value, index)`, that returns _true_ if its `parentPredicate` has succeeded `n` times
+ * @param n the number of elements `innerPredicate` must match
+ * @param innerPredicate inner predicate
+ * @returns `predicate(value, index)`, that returns _true_ if its `innerPredicate` has succeeded `n` times
  * @example
  *
  * ```ts
@@ -19,13 +19,13 @@ console.log(secondMatchingElem);
  *
  * @see {@link TPredicate}
  */
-function nthMatch(n, parentPredicate) {
+function nthMatch(n, innerPredicate) {
     if (n < 1) {
         throw new Error(`Invalid n: [${n}]! nth-match number value must be positive.`);
     }
     let matchCounter = 0;
     return function (value, index) {
-        if (parentPredicate.call(this, value, index)) {
+        if (innerPredicate.call(this, value, index)) {
             matchCounter++;
             if (matchCounter === n) {
                 return true;

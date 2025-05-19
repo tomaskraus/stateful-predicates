@@ -3,12 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.onChange = void 0;
 /**
  * Returns predicate(value, index) `P`, that:
- * - returns _true_ whenever its `parentPredicate` changes value - i.e. result of `parent predicate` differs from `P`'s internal state.
+ * - returns _true_ whenever its `innerPredicate` changes value - i.e. result of `innerPredicate` differs from `P`'s internal state.
  *
  * At the begin, the internal state of `P` is _false_.
  * @template T The type of input element
- * @param parentPredicate predicate
- * @returns `predicate(value, index)`, that returns _true_ whenever its `parentPredicate` changes value.
+ * @param innerPredicate predicate
+ * @returns `predicate(value, index)`, that returns _true_ whenever its `innerPredicate` changes value.
  *
  * @example
  *
@@ -21,10 +21,10 @@ console.log(changes);
  *
  * @see {@link TPredicate}
  */
-function onChange(parentPredicate) {
+function onChange(innerPredicate) {
     let state = false;
     return function (value, index) {
-        const result = parentPredicate.call(this, value, index);
+        const result = innerPredicate.call(this, value, index);
         if (!state && result) {
             state = true;
             return true;

@@ -1,10 +1,10 @@
 import type { TPredicate } from './util/predicate';
 /**
  * Returns predicate(value, index) `P`, that:
- * - returns _true_ if its `parentPredicate` has succeeded at previous element, i.e element with index-1.
+ * - returns _true_ if its `innerPredicate` has succeeded at previous element, i.e element with index-1.
  * @template T The type of input element
- * @param parentPredicate predicate
- * @returns `predicate(value, index)` that returns _true_ if its `parentPredicate` has succeeded one element before.
+ * @param innerPredicate predicate
+ * @returns `predicate(value, index)` that returns _true_ if its `innerPredicate` has succeeded one element before.
  *
  * @example
  *
@@ -20,4 +20,4 @@ console.log(result);
  *
  * @see {@link TPredicate}
  */
-export declare function oneAfter<T>(parentPredicate: TPredicate<T>): TPredicate<T>;
+export declare function oneAfter<T>(innerPredicate: TPredicate<T>): TPredicate<T>;

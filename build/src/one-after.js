@@ -3,10 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.oneAfter = void 0;
 /**
  * Returns predicate(value, index) `P`, that:
- * - returns _true_ if its `parentPredicate` has succeeded at previous element, i.e element with index-1.
+ * - returns _true_ if its `innerPredicate` has succeeded at previous element, i.e element with index-1.
  * @template T The type of input element
- * @param parentPredicate predicate
- * @returns `predicate(value, index)` that returns _true_ if its `parentPredicate` has succeeded one element before.
+ * @param innerPredicate predicate
+ * @returns `predicate(value, index)` that returns _true_ if its `innerPredicate` has succeeded one element before.
  *
  * @example
  *
@@ -22,11 +22,11 @@ console.log(result);
  *
  * @see {@link TPredicate}
  */
-function oneAfter(parentPredicate) {
+function oneAfter(innerPredicate) {
     let lastResult = false;
     return function (value, index) {
         const mem = lastResult;
-        lastResult = parentPredicate.call(this, value, index);
+        lastResult = innerPredicate.call(this, value, index);
         return mem;
     };
 }

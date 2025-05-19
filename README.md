@@ -112,21 +112,18 @@ console.log(elementsEnclosedByZeroAndMinusOne);
 ### oneAfter
 
 ```ts
-function oneAfter<T>(
-  parentPredicate: TPredicate<T>
-): TPredicate<T>;
+function oneAfter<T>(innerPredicate: TPredicate<T>): TPredicate<T>;
 ```
 
 Returns _predicate(value, index)_ `P`, that:
- * - returns _true_ if its `parentPredicate` has succeeded at previous element, i.e element with index-1.
+
+- - returns _true_ if its `innerPredicate` has succeeded at previous element, i.e element with index-1.
 
 **Example**:
 
 ```ts
 const isThree = (x: number) => x === 3;
-const result = [2, 3, 3, 0].map(
-  oneAfter(isThree)
-);
+const result = [2, 3, 3, 0].map(oneAfter(isThree));
 console.log(result);
 //=> [ false, false, true, true ]
 ```
@@ -136,12 +133,12 @@ It kind of shifts (or delays) the succesful element evaluation.
 ### nthMatch
 
 ```ts
-function nthMatch<T>(n: number, parentPredicate: TPredicate<T>): TPredicate<T>;
+function nthMatch<T>(n: number, innerPredicate: TPredicate<T>): TPredicate<T>;
 ```
 
 Returns predicate(value, index) `P`, that:
 
-- returns _true_ if its `parentPredicate` has succeeded `n` times
+- returns _true_ if its `innerPredicate` has succeeded `n` times
 
 **Example**:
 
@@ -155,12 +152,12 @@ console.log(secondMatchingElem);
 ### onChange
 
 ```ts
-function onChange<T>(parentPredicate: TPredicate<T>): TPredicate<T>;
+function onChange<T>(innerPredicate: TPredicate<T>): TPredicate<T>;
 ```
 
 Returns predicate(value, index) `P`, that:
 
-- returns _true_ whenever its `parentPredicate` changes value - i.e. result of `parent predicate` differs from `P`'s internal state.
+- returns _true_ whenever its `innerPredicate` changes value - i.e. result of `innerPredicate` differs from `P`'s internal state.
 
 At the begin, the internal state of `P` is _false_.
 
