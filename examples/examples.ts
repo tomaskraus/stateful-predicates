@@ -1,4 +1,4 @@
-import {nthElementAfter, switchTrueFalse} from '../src';
+import {oneAfter, switchTrueFalse} from '../src';
 
 const txt = `Begin of a file 
 /** 
@@ -13,7 +13,7 @@ const lines = txt.split('\n');
 // prettier-ignore
 const linesInsideABlockComment = lines.filter(
     switchTrueFalse(
-      nthElementAfter(1, s => /\/\*\*/i.test(s)),   // start to "return true" one line after a `/*`
+      oneAfter(s => /\/\*\*/i.test(s)),   // start to "return true" one line after a `/*`
       s => /\*\//i.test(s)                        // start to "return false" on a line with `*/`
     )
   );
@@ -29,7 +29,7 @@ console.log('result0:', result0);
 //=> result0: [ false, true, false, false, true, false ]
 
 const isThree = (x: number) => x === 3;
-const result1 = [2, 3, 0, 7, 4, 3, 5, -8].filter(nthElementAfter(2, isThree));
+const result1 = [2, 3, 0, 7, 4, 3, 5, -8].filter(oneAfter(isThree));
 console.log('result1:', result1);
 //=> result1: [ 7, -8 ]
 
@@ -70,7 +70,7 @@ const input = `
 const docCommentPredicate = () =>
   switchTrueFalse<string>(
     s => /\/\*\*/.test(s), // true at '/**' (begin-mark)
-    nthElementAfter(1, s => /\*\//.test(s)) // false after '*/' (end-mark)
+    oneAfter(s => /\*\//.test(s)) // false after '*/' (end-mark)
   );
 
 // prettier-ignore

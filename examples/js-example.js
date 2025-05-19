@@ -1,9 +1,4 @@
-const {
-  nthElementAfter,
-  switchTrueFalse,
-  nthMatch,
-  onChange,
-} = require('../build/src');
+const {oneAfter, switchTrueFalse, nthMatch, onChange} = require('../build/src');
 
 const input = `
   /** 
@@ -24,7 +19,7 @@ const input = `
 const docCommentPredicate = () =>
   switchTrueFalse(
     s => /\/\*\*/.test(s), // true at begin-mark
-    nthElementAfter(1, s => /\*\//.test(s))
+    oneAfter(s => /\*\//.test(s))
   ); // false after end-mark
 
 // prettier-ignore
@@ -49,25 +44,21 @@ console.log(elementsBetweenZeroAndMinusOne);
 //=> [ 0, 0, 5, 9 ]
 
 const trueBlocksOfNumbersExcl = [2, 1, 0, 4, 9, -1, 7, 0, 3].filter(
-  switchTrueFalse(nthElementAfter(1, isZero), isMinusOne)
+  switchTrueFalse(oneAfter(isZero), isMinusOne)
 );
 console.log(trueBlocksOfNumbersExcl);
 //=> [ 4, 9, 3 ]
 
-const elemsAfterZeros = [3, 0, 15, 0, 0, 4].filter(
-  nthElementAfter(1, x => x === 0)
-);
+const elemsAfterZeros = [3, 0, 15, 0, 0, 4].filter(oneAfter(x => x === 0));
 console.log(elemsAfterZeros);
 //=> [ 15, 0 ]
 
-const result = [3, 2, 2, 2, 5, 1].map(nthElementAfter(1, x => x === 2));
+const result = [3, 2, 2, 2, 5, 1].map(oneAfter(x => x === 2));
 console.log(result);
 //=> [ false, false, true, false, true, false ]
 
 const isThree = x => x === 3;
-const secondElemsAfter3 = [2, 3, 0, 7, 4, 3, 5, -8].filter(
-  nthElementAfter(2, isThree)
-);
+const secondElemsAfter3 = [2, 3, 0, 7, 4, 3, 5, -8].filter(oneAfter(isThree));
 console.log(secondElemsAfter3);
 
 const changes = [2, 3, 3, 3, 4, 3, 5, -8].map(onChange(isThree));

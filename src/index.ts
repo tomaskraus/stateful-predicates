@@ -1,4 +1,4 @@
 export * from './switchtruefalse';
-export * from './nthelementafter';
+export * from './one-after';
 export * from './nthmatch';
 export * from './onchange';

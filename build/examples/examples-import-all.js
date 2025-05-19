@@ -34,7 +34,7 @@ this is a footer section
 some text...`;
 const lines = txt.split('\n');
 // prettier-ignore
-const linesInsideABlockComment = lines.filter(SP.switchTrueFalse(SP.nthElementAfter(1, s => /\/\*/i.test(s)), // start to "return true" one line after a `/*`
+const linesInsideABlockComment = lines.filter(SP.switchTrueFalse(SP.oneAfter(s => /\/\*/i.test(s)), // start to "return true" one line after a `/*`
 // start to "return true" one line after a `/*`
 s => /\*\//i.test(s) // start to "return false" on a line with `*/`
 ));

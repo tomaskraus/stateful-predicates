@@ -10,20 +10,20 @@ Carefully selected, minimalistic collection of predicate wrappers.
 Predicate list:
 
 - [switchTrueFalse](#switchtruefalse)
-- [nthElementAfter](#nthelementafter)
+- [oneAfter](#oneafter)
 - [nthMatch](#nthmatch)
 - [onChange](#onchange)
 
 **Example**: Get an inside of a block documetation comment:
 
 ```ts
-import {switchTrueFalse, nthElementAfter} from 'stateful-predicates';
+import {switchTrueFalse, oneAfter} from 'stateful-predicates';
 
 // prettier-ignore
 const linesInsideADocBlockComment = lines.filter(
     switchTrueFalse(
-      nthElementAfter(1,        // start to "return true" one line after a `/**`
-        s => /\/\*\*/i.test(s)
+      oneAfter(s => /\/\*\*/i.test(s)    // start to "return true" one line after a `/**`
+        
       ),  
       s => /\*\//i.test(s)      // start to "return false" on a line with `*/`
     )
@@ -109,40 +109,29 @@ console.log(elementsEnclosedByZeroAndMinusOne);
 //=> [ 0, 0, 5, 9 ]
 ```
 
-### nthElementAfter
+### oneAfter
 
 ```ts
-function nthElementAfter<T>(
-  offset: number,
+function oneAfter<T>(
   parentPredicate: TPredicate<T>
 ): TPredicate<T>;
 ```
 
-Returns predicate(value, index) `P`, that:
-
-- returns _true_ if its `parentPredicate` has "succeeded at element" `offset` number of elements before.
+Returns _predicate(value, index)_ `P`, that:
+ * - returns _true_ if its `parentPredicate` has succeeded at previous element, i.e element with index-1.
 
 **Example**:
 
 ```ts
 const isThree = (x: number) => x === 3;
-const secondElemsAfter3 = [2, 3, 0, 7, 4, 3, 5, -8].filter(
-  nthElementAfter(2, isThree)
+const result = [2, 3, 3, 0].map(
+  oneAfter(isThree)
 );
-console.log(secondElemsAfter3);
-//=> [ 7, -8 ]
+console.log(result);
+//=> [ false, false, true, true ]
 ```
 
 It kind of shifts (or delays) the succesful element evaluation.
-
-- `P` is **greedy**: tries to succeed as soon as possible. If there are more elements within the "`offset` range" `parentPredicate` could succeed, they are not recognized.
-- `P` is **repeatable**: is ready to detect elements again as soon as it is at least `offset` elements after its last detected element.
-
-```ts
-const result = [3, 2, 2, 2, 5, 1].map(nthElementAfter(1, x => x === 2));
-console.log(result);
-//=> [ false, false, true, false, true, false ]
-```
 
 ### nthMatch
 
@@ -189,7 +178,7 @@ console.log(changes);
 Show only documentation comments from a source code input text:
 
 ```ts
-import {switchTrueFalse, nthElementAfter} from 'stateful-predicates';
+import {switchTrueFalse, oneAfter} from 'stateful-predicates';
 
 const input = `
   /** 
@@ -212,7 +201,7 @@ const input = `
 const docCommentPredicate = () =>
   switchTrueFalse<string>(
     s => /\/\*\*/.test(s), // true at '/**' (begin-mark)
-    nthElementAfter(1, s => /\*\//.test(s)) // false after '*/' (end-mark)
+    oneAfter(s => /\*\//.test(s)) // false after '*/' (end-mark)
   );
 
 // prettier-ignore

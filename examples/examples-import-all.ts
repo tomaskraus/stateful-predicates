@@ -13,7 +13,7 @@ const lines = txt.split('\n');
 // prettier-ignore
 const linesInsideABlockComment = lines.filter(
   SP.switchTrueFalse(
-    SP.nthElementAfter(1, s => /\/\*/i.test(s)),   // start to "return true" one line after a `/*`
+    SP.oneAfter(s => /\/\*/i.test(s)),   // start to "return true" one line after a `/*`
     s => /\*\//i.test(s)                        // start to "return false" on a line with `*/`
   )
 );
