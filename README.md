@@ -5,7 +5,7 @@
 # stateful-predicates
 
 Carefully selected, minimalistic collection of predicate wrappers.  
-`stateful-predicates ` bring new power to standard _predicates_, required by [Array.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), [RxJS](https://rxjs.dev/api/operators/takeWhile) or other methods/libraries that use predicates.
+`stateful-predicates` bring new power to standard _predicates_, required by [Array.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), [RxJS](https://rxjs.dev/api/operators/takeWhile) or other methods/libraries that use predicates.
 
 Predicate list:
 
@@ -22,9 +22,7 @@ import {switchTrueFalse, oneAfter} from 'stateful-predicates';
 // prettier-ignore
 const linesInsideADocBlockComment = lines.filter(
     switchTrueFalse(
-      oneAfter(s => /\/\*\*/i.test(s)    // start to "return true" one line after a `/**`
-        
-      ),  
+      oneAfter(s => /\/\*\*/i.test(s)),    // start to "return true" one line after a `/**`  
       s => /\*\//i.test(s)      // start to "return false" on a line with `*/`
     )
   );
@@ -116,8 +114,7 @@ function oneAfter<T>(innerPredicate: TPredicate<T>): TPredicate<T>;
 ```
 
 Returns _predicate(value, index)_ `P`, that:
-
-- - returns _true_ if its `innerPredicate` has succeeded at previous element, i.e element with index-1.
+- returns _true_ if its `innerPredicate` has succeeded at previous element, i.e element with index-1.
 
 **Example**:
 
@@ -128,7 +125,13 @@ console.log(result);
 //=> [ false, false, true, true ]
 ```
 
-It kind of shifts (or delays) the succesful element evaluation.
+It kind of shifts (or delays) the succesful element evaluation:
+
+```ts
+const resultsWithoutOneAfter = [2, 3, 3, 0].map(isThree);
+console.log(resultsWithoutOneAfter);
+//=> [ false, true, true, false ]
+```
 
 ### nthMatch
 
